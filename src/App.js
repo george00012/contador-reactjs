@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [value, setValue] = useState(0);
+
+  const sumar = () => setValue(value + 1);
+  const borrar = () => setValue(0);
+  const restar = () => setValue(value - 1);
+
+  const valueColor = {
+    color: value > 0 ? "green" : value < 0 ? "red" : "black",
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="content">
+      <h1>Contador</h1>
+      <h2 style={valueColor}>{value}</h2>
+      <div className="botones">
+        <button onClick={sumar}>Aumentar </button>
+        <button onClick={borrar}>Resetear</button>
+        <button onClick={restar} color="red">Restar </button>
+      </div>
     </div>
   );
 }
